@@ -7,6 +7,11 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.udojava.evalex.Expression;
 
+/**
+ * 
+ * @author J. Heuschen
+ *
+ */
 public final class JGraph {
 
 	private static JGraphFrame frame = null;
