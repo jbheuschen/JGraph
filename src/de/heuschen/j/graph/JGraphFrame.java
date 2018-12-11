@@ -23,7 +23,7 @@ public class JGraphFrame extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 4484439934078533732L;
-	private JPanel contentPane;
+	private JPanel contentPane, valTab;
 	private JTextField equation;
 	private JSpinner range;
 	private JCheckBox nullX, negativeX;
@@ -85,9 +85,13 @@ public class JGraphFrame extends JFrame implements ActionListener {
 		contentPane.add(negativeX);
 
 		JLabel lblDerGraphWird = new JLabel("Der Graph wird in einem neuen Fenster ge\u00F6ffnet.");
-		lblDerGraphWird.setBounds(260, 325, 331, 14);
+		lblDerGraphWird.setBounds(260, 240, 331, 14);
 		contentPane.add(lblDerGraphWird);
-
+		
+		valTab = new JPanel();
+		valTab.setBounds(10, 400, 764, 350);
+		contentPane.add(valTab);
+		setMinimumSize(JGraph.MINIMUM_SIZE);
 		generate.addActionListener(this);
 		RefineryUtilities.centerFrameOnScreen(this);
 	}
@@ -98,6 +102,10 @@ public class JGraphFrame extends JFrame implements ActionListener {
 			try {
 				JGraphView v = new JGraphView(equation.getText().trim(), Double.valueOf(range.getValue().toString()), nullX.isSelected(), negativeX.isSelected());
 				new JGraphViewFrame(equation.getText(), v.getChart());
+				valTab.setVisible(false);
+				valTab.removeAll();
+				valTab.add(new ValueTable(equation.getText(), Double.valueOf(range.getValue().toString())));
+				valTab.setVisible(true);
 			} catch (Exception e) {
 				new ErrorDialog(e.getLocalizedMessage());
 				return;

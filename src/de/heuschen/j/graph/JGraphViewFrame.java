@@ -37,7 +37,7 @@ public class JGraphViewFrame extends JFrame {
 		setTitle("JGraph | " + equation);
 		setContentPane(graph);
 		setVisible(true);
-
+		setMinimumSize(JGraph.MINIMUM_SIZE);
 		save.addActionListener((e) -> {
 
 		});
